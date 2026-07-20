@@ -1,14 +1,26 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 import { FaShoppingCart } from "react-icons/fa";
 
 function Navbar() {
   const navigate = useNavigate();
+
   const isAdmin = localStorage.getItem("isAdmin") === "true";
+
+  const { cart } = useContext(CartContext);
+
+  const cartCount = cart.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
 
   const handleLogout = () => {
     localStorage.removeItem("isAdmin");
     navigate("/");
   };
+
 
   const styles = {
     header: {
@@ -55,21 +67,37 @@ function Navbar() {
     }
   };
 
+
   return (
     <header style={styles.header}>
-      <h2 style={styles.logo}>
+
+      <div style={styles.logo}>
         Nexus Store
-      </h2>
+      </div>
+
 
       <nav style={styles.nav}>
-        <Link style={styles.link} to="/">Home</Link>
-        <Link style={styles.link} to="/products">Products</Link>
-        <Link style={styles.link} to="/cart">
-          <FaShoppingCart /> Cart
+
+        <Link style={styles.link} to="/">
+          Home
         </Link>
 
+
+        <Link style={styles.link} to="/products">
+          Products
+        </Link>
+
+
+        <Link style={styles.link} to="/cart">
+          <FaShoppingCart /> Cart ({cartCount})
+        </Link>
+
+
         {isAdmin ? (
-          <button style={styles.button} onClick={handleLogout}>
+          <button 
+            style={styles.button} 
+            onClick={handleLogout}
+          >
             Logout
           </button>
         ) : (
@@ -77,7 +105,9 @@ function Navbar() {
             Login
           </Link>
         )}
+
       </nav>
+
     </header>
   );
 }

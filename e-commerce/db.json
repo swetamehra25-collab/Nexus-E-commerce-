@@ -1,0 +1,204 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "iPhone 15 Pro",
+      "description": "Apple flagship smartphone",
+      "price": 129999,
+      "category": "Mobiles",
+      "rating": 4.9,
+      "stock": 12,
+      "image": "https://dummyjson.com/image/300x300/007bff/ffffff?text=iPhone+15+Pro"
+    },
+    {
+      "id": 2,
+      "title": "Samsung Galaxy S25",
+      "description": "Premium Android smartphone",
+      "price": 99999,
+      "category": "Mobiles",
+      "rating": 4.8,
+      "stock": 18,
+      "image": "https://dummyjson.com/image/300x300/6f42c1/ffffff?text=Galaxy+S25"
+    },
+    {
+      "id": 3,
+      "title": "OnePlus 13",
+      "description": "Fast and smooth smartphone",
+      "price": 69999,
+      "category": "Mobiles",
+      "rating": 4.7,
+      "stock": 20,
+      "image": "https://dummyjson.com/image/300x300/198754/ffffff?text=OnePlus+13"
+    },
+    {
+      "id": 4,
+      "title": "MacBook Air M4",
+      "description": "Apple lightweight laptop",
+      "price": 114999,
+      "category": "Laptops",
+      "rating": 4.9,
+      "stock": 8,
+      "image": "https://dummyjson.com/image/300x300/343a40/ffffff?text=MacBook+Air"
+    },
+    {
+      "id": 5,
+      "title": "Dell XPS 15",
+      "description": "Premium Windows laptop",
+      "price": 139999,
+      "category": "Laptops",
+      "rating": 4.8,
+      "stock": 10,
+      "image": "https://dummyjson.com/image/300x300/0d6efd/ffffff?text=Dell+XPS"
+    },
+    {
+      "id": 6,
+      "title": "HP Pavilion",
+      "description": "Student laptop",
+      "price": 64999,
+      "category": "Laptops",
+      "rating": 4.6,
+      "stock": 25,
+      "image": "https://dummyjson.com/image/300x300/20c997/ffffff?text=HP+Pavilion"
+    },
+    {
+      "id": 7,
+      "title": "Nike Air Max",
+      "description": "Running shoes",
+      "price": 7999,
+      "category": "Shoes",
+      "rating": 4.5,
+      "stock": 40,
+      "image": "https://dummyjson.com/image/300x300/f03e3e/ffffff?text=Nike+Air+Max"
+    },
+    {
+      "id": 8,
+      "title": "Adidas Ultraboost",
+      "description": "Comfort running shoes",
+      "price": 9999,
+      "category": "Shoes",
+      "rating": 4.7,
+      "stock": 32,
+      "image": "https://dummyjson.com/image/300x300/f59f00/ffffff?text=Ultraboost"
+    },
+    {
+      "id": 9,
+      "title": "Puma Sneakers",
+      "description": "Casual sneakers",
+      "price": 4999,
+      "category": "Shoes",
+      "rating": 4.4,
+      "stock": 28,
+      "image": "https://dummyjson.com/image/300x300/e64980/ffffff?text=Puma"
+    },
+    {
+      "id": 10,
+      "title": "Apple Watch Series 10",
+      "description": "Latest Apple smartwatch",
+      "price": 45999,
+      "category": "Watches",
+      "rating": 4.8,
+      "stock": 15,
+      "image": "https://dummyjson.com/image/300x300/7950f2/ffffff?text=Apple+Watch"
+    },
+    {
+      "id": 11,
+      "title": "Boat Smart Watch",
+      "description": "Budget smartwatch",
+      "price": 2999,
+      "category": "Watches",
+      "rating": 4.3,
+      "stock": 50,
+      "image": "https://dummyjson.com/image/300x300/12b886/ffffff?text=Boat+Watch"
+    },
+    {
+      "id": 12,
+      "title": "Sony WH-1000XM5",
+      "description": "Noise cancelling headphones",
+      "price": 29999,
+      "category": "Headphones",
+      "rating": 4.9,
+      "stock": 18,
+      "image": "https://dummyjson.com/image/300x300/212529/ffffff?text=Sony+XM5"
+    },
+    {
+      "id": 13,
+      "title": "AirPods Pro",
+      "description": "Apple wireless earbuds",
+      "price": 24999,
+      "category": "Headphones",
+      "rating": 4.8,
+      "stock": 30,
+      "image": "https://dummyjson.com/image/300x300/495057/ffffff?text=AirPods+Pro"
+    },
+    {
+      "id": 14,
+      "title": "Logitech Gaming Mouse",
+      "description": "RGB gaming mouse",
+      "price": 3499,
+      "category": "Accessories",
+      "rating": 4.6,
+      "stock": 35,
+      "image": "https://dummyjson.com/image/300x300/6610f2/ffffff?text=Gaming+Mouse"
+    },
+    {
+      "id": 15,
+      "title": "Mechanical Keyboard",
+      "description": "RGB mechanical keyboard",
+      "price": 5499,
+      "category": "Accessories",
+      "rating": 4.7,
+      "stock": 24,
+      "image": "https://dummyjson.com/image/300x300/5f3dc4/ffffff?text=Keyboard"
+    },
+    {
+      "id": 16,
+      "title": "Travel Backpack",
+      "description": "Waterproof backpack",
+      "price": 1999,
+      "category": "Bags",
+      "rating": 4.4,
+      "stock": 60,
+      "image": "https://dummyjson.com/image/300x300/2b8a3e/ffffff?text=Backpack"
+    },
+    {
+      "id": 17,
+      "title": "Men Hoodie",
+      "description": "Winter hoodie",
+      "price": 1499,
+      "category": "Fashion",
+      "rating": 4.3,
+      "stock": 70,
+      "image": "https://dummyjson.com/image/300x300/c2255c/ffffff?text=Hoodie"
+    },
+    {
+      "id": 18,
+      "title": "Blue Jeans",
+      "description": "Slim fit jeans",
+      "price": 1899,
+      "category": "Fashion",
+      "rating": 4.5,
+      "stock": 55,
+      "image": "https://dummyjson.com/image/300x300/1c7ed6/ffffff?text=Jeans"
+    },
+    {
+      "id": 19,
+      "title": "Canon DSLR Camera",
+      "description": "Professional camera",
+      "price": 55999,
+      "category": "Cameras",
+      "rating": 4.8,
+      "stock": 10,
+      "image": "https://dummyjson.com/image/300x300/343a40/ffffff?text=Canon+DSLR"
+    },
+    {
+      "id": 20,
+      "title": "Samsung Galaxy Tab",
+      "description": "Android tablet",
+      "price": 35999,
+      "category": "Tablets",
+      "rating": 4.6,
+      "stock": 16,
+      "image": "https://dummyjson.com/image/300x300/087f5b/ffffff?text=Galaxy+Tab"
+    }
+  ]
+}
