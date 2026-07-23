@@ -1,77 +1,265 @@
+/* ================= NAVBAR ================= */
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 70px;
+    background:#ffffff;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo span{
+    color:#111827;
+}
+
+.logo{
+    font-size:32px;
+    font-weight:700;
+    color:#2563eb;
+    letter-spacing:.5px;
+    cursor:pointer;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:35px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#374151;
+    font-size:16px;
+    font-weight:500;
+    position:relative;
+    transition:.3s;
+}
+
+/* Underline Animation */
+
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:0%;
+    height:2px;
+    background:#2563eb;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#2563eb;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
+.cart-link{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:600;
+}
+
+.login-btn{
+    background:#2563eb;
+    color:white !important;
+    padding:10px 22px;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.login-btn:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+.logout-btn{
+    background:#ef4444;
+    color:white;
+    border:none;
+    padding:10px 22px;
+    border-radius:8px;
+    font-size:15px;
+    font-weight:500;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.logout-btn:hover{
+    background:#dc2626;
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(239,68,68,.3);
+}
+
+/* ================= PRODUCT CARD ================= */
+
 .product-card{
 
-    background:white;
+background:white;
 
-    border-radius:15px;
+border-radius:18px;
 
-    padding:20px;
+overflow:hidden;
 
-    text-align:center;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
 
-    box-shadow:0 8px 20px rgba(0,0,0,.1);
+transition:.35s;
 
-    transition:.3s;
+display:flex;
+
+flex-direction:column;
 
 }
 
 .product-card:hover{
 
-    transform:translateY(-8px);
+transform:translateY(-8px);
+
+box-shadow:0 15px 35px rgba(37,99,235,.15);
 
 }
 
-.product-card img{
+.product-image{
 
-    width:180px;
+width:100%;
 
-    height:180px;
+height:240px;
 
-    object-fit:cover;
+object-fit:contain;
+
+padding:20px;
+
+background:#f8fafc;
 
 }
 
-.product-card h3{
+.product-info{
 
-    margin:20px 0;
+padding:20px;
 
-    color:#1f2937;
+}
+
+.category{
+
+display:inline-block;
+
+padding:6px 12px;
+
+background:#e0ecff;
+
+color:#2563eb;
+
+border-radius:30px;
+
+font-size:13px;
+
+margin-bottom:12px;
+
+font-weight:600;
+
+text-transform:capitalize;
+
+}
+
+.product-info h3{
+
+margin:12px 0;
+
+font-size:20px;
+
+color:#1f2937;
+
+min-height:55px;
 
 }
 
 .price{
 
-    font-size:24px;
+font-size:24px;
 
-    color:#2563eb;
+font-weight:bold;
 
-    font-weight:bold;
+color:#2563eb;
 
-}
-
-.product-card button{
-
-    margin-top:20px;
-
-    width:100%;
-
-    padding:12px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#2563eb;
-
-    color:white;
-
-    cursor:pointer;
-
-    font-size:16px;
+margin-bottom:20px;
 
 }
 
-.product-card button:hover{
+.product-buttons{
 
-    background:#1d4ed8;
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+}
+
+.details-btn{
+
+padding:12px;
+
+border:2px solid #2563eb;
+
+background:white;
+
+color:#2563eb;
+
+border-radius:10px;
+
+font-weight:600;
+
+transition:.3s;
+
+cursor:pointer;
+
+width:100%;
+
+}
+
+.details-btn:hover{
+
+background:#2563eb;
+
+color:white;
+
+}
+
+.cart-btn{
+
+padding:12px;
+
+border:none;
+
+background:#2563eb;
+
+color:white;
+
+border-radius:10px;
+
+font-size:16px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+width:100%;
+
+}
+
+.cart-btn:hover{
+
+background:#1d4ed8;
+
+transform:translateY(-2px);
 
 }

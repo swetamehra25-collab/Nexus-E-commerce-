@@ -15,6 +15,7 @@ import Login from "../pages/Login";
 import Dashboard from "../admin/Dashboard";
 import AdminProducts from "../admin/Products";
 import AddProduct from "../admin/AddProduct";
+import EditProduct from "../admin/EditProduct";
 
 // Auth Guard
 import AuthGuard from "../components/AuthGuard";
@@ -22,53 +23,69 @@ import AuthGuard from "../components/AuthGuard";
 const router = createBrowserRouter([
   {
     path: "/",
+
     element: <PublicLayout />,
+
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <Home />
       },
+
       {
         path: "products",
-        element: <Products />,
+        element: <Products />
       },
+
       {
         path: "products/:id",
-        element: <ProductDetails />,
+        element: <ProductDetails />
       },
+
       {
         path: "cart",
-        element: <Cart />,
+        element: <Cart />
       },
+
       {
         path: "login",
-        element: <Login />,
-      },
-    ],
+        element: <Login />
+      }
+    ]
   },
 
   {
     path: "/admin",
+
     element: (
       <AuthGuard>
         <AdminLayout />
       </AuthGuard>
     ),
+
     children: [
       {
         index: true,
-        element: <Dashboard />,
+        element: <Dashboard />
       },
+
       {
         path: "products",
-        element: <AdminProducts />,
+        element: <AdminProducts />
       },
+
       {
         path: "add-product",
-        element: <AddProduct />,
+        element: <AddProduct />
       },
-    ],
-  },
+
+      // ✅ New Route
+      {
+        path: "edit-product/:id",
+        element: <EditProduct />
+      }
+    ]
+  }
 ]);
 
 export default router;
