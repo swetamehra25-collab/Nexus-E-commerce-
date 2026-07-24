@@ -1,43 +1,31 @@
 import {
 useMutation,
 useQueryClient
-}
-from "@tanstack/react-query";
-
+} from "@tanstack/react-query";
 
 import productApi from "../api/productApi";
-
 
 
 function AddProducts(){
 
 
-const queryClient =
-useQueryClient();
+const queryClient = useQueryClient();
 
 
 
-const mutation =
-useMutation({
+const mutation = useMutation({
 
-mutationFn:productApi.addProduct,
-
+mutationFn: productApi.addProduct,
 
 onSuccess:()=>{
 
-
 queryClient.invalidateQueries({
-
 queryKey:["products"]
-
 });
-
 
 }
 
-
 });
-
 
 
 
@@ -46,46 +34,78 @@ function handleSubmit(e){
 e.preventDefault();
 
 
-
 const product={
-
 
 title:e.target.title.value,
 
-
-price:Number(
-e.target.price.value
-)
-
+price:Number(e.target.price.value)
 
 };
-
 
 
 mutation.mutate(product);
 
 
+e.target.reset();
+
 }
-
-
 
 
 
 return(
 
-<form onSubmit={handleSubmit}>
+<div className="add-product-page">
 
+
+<div className="add-product-header">
+
+<h1>
+Add New Product
+</h1>
+
+<p>
+Create and manage your store inventory easily
+</p>
+
+</div>
+
+
+
+<form className="add-product-form" onSubmit={handleSubmit}>
+
+
+<div className="form-group">
+
+<label>
+Product Name
+</label>
 
 <input
 name="title"
-placeholder="Product Name"
+placeholder="Enter product name"
 />
 
+</div>
+
+
+
+<div className="form-group">
+
+<label>
+Price
+</label>
 
 <input
+
 name="price"
-placeholder="Price"
+
+placeholder="Enter price"
+
+type="number"
+
 />
+
+</div>
 
 
 
@@ -96,11 +116,14 @@ Add Product
 </button>
 
 
+
 </form>
 
 
-)
+</div>
 
+
+)
 
 }
 

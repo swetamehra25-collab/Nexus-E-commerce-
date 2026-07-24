@@ -1,64 +1,113 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingBag, FaUser } from "react-icons/fa";
+import "../styles/components.css";
 
 
-function Navbar() {
-  const navigate = useNavigate();
+function Navbar(){
 
-  const isAdmin = localStorage.getItem("isAdmin") === "true";
+const navigate = useNavigate();
 
-  const { cart } = useContext(CartContext);
+const isAdmin = localStorage.getItem("isAdmin") === "true";
 
-  const cartCount = cart.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+const {cart}=useContext(CartContext);
 
-  const handleLogout = () => {
-    localStorage.removeItem("isAdmin");
-    navigate("/");
-  };
 
-  return (
-    <header className="navbar">
+const cartCount = cart.reduce(
+(total,item)=> total + item.quantity,
+0
+);
 
-      <div className="logo">
-    Nexus<span>Store</span>
+
+
+const handleLogout=()=>{
+
+localStorage.removeItem("isAdmin");
+
+navigate("/");
+
+};
+
+
+
+return(
+
+<header className="navbar">
+
+
+<div className="brand">
+
+<Link to="/">
+Nexus<span>Store</span>
+</Link>
+
 </div>
 
-      <nav className="nav-links">
 
-        <Link to="/">Home</Link>
 
-        <Link to="/products">Products</Link>
+<nav className="nav-menu">
 
-        <Link to="/cart" className="cart-link">
-          <FaShoppingCart />
-          <span>Cart ({cartCount})</span>
-        </Link>
 
-        {isAdmin ? (
-          <button
-            className="logout-btn"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        ) : (
-          <Link
-            className="login-btn"
-            to="/login"
-          >
-            Login
-          </Link>
-        )}
+<Link to="/">
+Home
+</Link>
 
-      </nav>
 
-    </header>
-  );
+<Link to="/products">
+Products
+</Link>
+
+
+<Link to="/cart" className="cart">
+
+<FaShoppingBag/>
+
+Cart
+
+<span>
+{cartCount}
+</span>
+
+</Link>
+
+
+
+{
+isAdmin ?
+
+<button
+className="logout-btn"
+onClick={handleLogout}
+>
+Logout
+</button>
+
+
+:
+
+<Link
+to="/login"
+className="login-btn"
+>
+
+<FaUser/>
+
+Login
+
+</Link>
+
 }
+
+
+</nav>
+
+
+</header>
+
+)
+
+}
+
 
 export default Navbar;

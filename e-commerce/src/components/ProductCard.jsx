@@ -4,69 +4,95 @@ import { CartContext } from "../context/CartContext";
 
 function ProductCard({ product }) {
 
-  const { dispatch } = useContext(CartContext);
+const { dispatch } = useContext(CartContext);
 
-  function handleAddToCart() {
 
-    dispatch({
+function handleAddToCart() {
 
-      type: "ADD_TO_CART",
+dispatch({
 
-      payload: {
-        ...product,
-        quantity: 1,
-      },
+type: "ADD_TO_CART",
 
-    });
+payload: {
+  ...product,
+  image: product.thumbnail,
+  quantity: 1,
+},
+});
 
-    alert(`${product.title} added to cart`);
 
-  }
+alert(`${product.title} added to cart`);
 
-  return (
+}
 
-    <div className="product-card">
 
-      <img
-        src={product.thumbnail || product.image}
-        alt={product.title}
-        className="product-image"
-      />
 
-      <div className="product-info">
+return (
 
-        <span className="category">
-          {product.category}
-        </span>
+<div className="product-card">
 
-        <h3>{product.title}</h3>
 
-        <p className="price">
-          ₹ {product.price}
-        </p>
+  <div className="product-image-box">
 
-        <div className="product-buttons">
+    <img
+      src={product.thumbnail}
+      alt={product.title}
+      className="product-image"
+    />
 
-          <Link to={`/products/${product.id}`}>
-            <button className="details-btn">
-              View Details
-            </button>
-          </Link>
+  </div>
 
-          <button
-            className="cart-btn"
-            onClick={handleAddToCart}
-          >
-            Add To Cart
-          </button>
 
-        </div>
 
-      </div>
+  <div className="product-info">
+
+
+    <span className="category">
+      {product.category}
+    </span>
+
+
+    <h3>
+      {product.title}
+    </h3>
+
+
+    <p className="price">
+      ₹ {product.price}
+    </p>
+
+
+
+    <div className="product-buttons">
+
+
+      <Link to={`/products/${product.id}`}>
+
+        <button className="details-btn">
+          View Details
+        </button>
+
+      </Link>
+
+
+
+      <button
+        className="cart-btn"
+        onClick={handleAddToCart}
+      >
+        Add To Cart
+      </button>
+
 
     </div>
 
-  );
+
+  </div>
+
+
+</div>
+
+);
 
 }
 

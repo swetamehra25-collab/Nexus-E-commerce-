@@ -1,98 +1,231 @@
 import {
-  useQuery,
-  useMutation,
-  useQueryClient,
+useQuery,
+useMutation,
+useQueryClient
 } from "@tanstack/react-query";
 
 import {
-  useParams,
-  useNavigate,
+useParams,
+useNavigate
 } from "react-router-dom";
 
 import productApi from "../api/productApi";
 
+
 function EditProduct() {
 
-  const { id } = useParams();
 
-  const navigate = useNavigate();
+const { id } = useParams();
 
-  const queryClient = useQueryClient();
+const navigate = useNavigate();
 
-  const { data, isLoading } = useQuery({
+const queryClient = useQueryClient();
 
-    queryKey: ["product", id],
 
-    queryFn: () => productApi.getProductById(id),
 
-  });
+const { data, isLoading } = useQuery({
 
-  const mutation = useMutation({
+queryKey:["product", id],
 
-    mutationFn: productApi.updateProduct,
+queryFn:()=>productApi.getProductById(id)
 
-    onSuccess: () => {
+});
 
-      queryClient.invalidateQueries({
 
-        queryKey: ["products"]
 
-      });
 
-      navigate("/admin/products");
 
-    }
+const mutation = useMutation({
 
-  });
+mutationFn:productApi.updateProduct,
 
-  function handleSubmit(e) {
 
-    e.preventDefault();
+onSuccess:()=>{
 
-    const product = {
 
-      id: Number(id),
+queryClient.invalidateQueries({
 
-      title: e.target.title.value,
+queryKey:["products"]
 
-      price: Number(e.target.price.value)
+});
 
-    };
 
-    mutation.mutate(product);
+navigate("/admin/products");
 
-  }
-
-  if (isLoading) {
-
-    return <h2>Loading...</h2>;
-
-  }
-
-  return (
-
-    <form onSubmit={handleSubmit}>
-
-      <input
-        name="title"
-        defaultValue={data.title}
-      />
-
-      <input
-        name="price"
-        defaultValue={data.price}
-      />
-
-      <button>
-
-        Update Product
-
-      </button>
-
-    </form>
-
-  );
 
 }
+
+});
+
+
+
+
+
+
+function handleSubmit(e){
+
+
+e.preventDefault();
+
+
+
+const product={
+
+
+id:Number(id),
+
+title:e.target.title.value,
+
+price:Number(e.target.price.value)
+
+
+};
+
+
+
+mutation.mutate(product);
+
+
+
+}
+
+
+
+
+
+if(isLoading){
+
+return (
+
+<div className="loading-box">
+
+Loading Product...
+
+</div>
+
+)
+
+}
+
+
+
+
+
+return(
+
+
+<div className="edit-product-page">
+
+
+
+<div className="edit-header">
+
+<h1>
+Edit Product
+</h1>
+
+<p>
+Update product details from your inventory
+</p>
+
+</div>
+
+
+
+
+<form className="edit-product-form" onSubmit={handleSubmit}>
+
+
+<div className="form-group">
+
+
+<label>
+Product Name
+</label>
+
+
+<input
+
+name="title"
+
+defaultValue={data.title}
+
+/>
+
+
+</div>
+
+
+
+
+
+<div className="form-group">
+
+
+<label>
+Price
+</label>
+
+
+<input
+
+name="price"
+
+type="number"
+
+defaultValue={data.price}
+
+/>
+
+
+</div>
+
+
+
+
+
+<div className="edit-buttons">
+
+
+<button type="submit">
+
+Update Product
+
+</button>
+
+
+
+<button
+
+type="button"
+
+className="cancel-btn"
+
+onClick={()=>navigate("/admin/products")}
+
+>
+
+Cancel
+
+</button>
+
+
+</div>
+
+
+
+
+</form>
+
+
+
+</div>
+
+
+)
+
+
+}
+
 
 export default EditProduct;

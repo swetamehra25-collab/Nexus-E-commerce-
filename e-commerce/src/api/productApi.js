@@ -1,52 +1,96 @@
-const BASE_URL = "http://localhost:3000/products";
+const BASE_URL = "https://dummyjson.com/products";
+
 
 const productApi = {
 
-  // Get All Products
-  getProducts: async () => {
-    const res = await fetch(BASE_URL);
-    return res.json();
-  },
 
-  // Add Product
-  addProduct: async (product) => {
-    const res = await fetch(BASE_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(product),
-    });
+getProducts: async () => {
 
-    return res.json();
-  },
+const res = await fetch(`${BASE_URL}?limit=100`);
 
-  // Delete Product
-  deleteProduct: async (id) => {
-    await fetch(`${BASE_URL}/${id}`, {
-      method: "DELETE",
-    });
-  },
+if(!res.ok){
+throw new Error("Failed to fetch products");
+}
 
-  // ✅ Get Single Product
-  getProductById: async (id) => {
-    const res = await fetch(`${BASE_URL}/${id}`);
-    return res.json();
-  },
+const data = await res.json();
 
-  // ✅ Update Product
-  updateProduct: async (product) => {
-    const res = await fetch(`${BASE_URL}/${product.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(product),
-    });
+return data.products;
 
-    return res.json();
-  },
+},
+
+
+
+getProductById: async (id) => {
+
+const res = await fetch(`${BASE_URL}/${id}`);
+
+if(!res.ok){
+throw new Error("Failed to fetch product");
+}
+
+return res.json();
+
+},
+
+
+
+addProduct: async(product)=>{
+
+const res = await fetch(`${BASE_URL}/add`,{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify(product)
+
+});
+
+
+return res.json();
+
+},
+
+
+
+deleteProduct: async(id)=>{
+
+const res = await fetch(`${BASE_URL}/${id}`,{
+
+method:"DELETE"
+
+});
+
+
+return res.json();
+
+},
+
+
+
+updateProduct: async(product)=>{
+
+const res = await fetch(`${BASE_URL}/${product.id}`,{
+
+method:"PUT",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify(product)
+
+});
+
+
+return res.json();
+
+}
+
 
 };
+
 
 export default productApi;

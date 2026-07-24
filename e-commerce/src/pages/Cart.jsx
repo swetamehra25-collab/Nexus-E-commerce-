@@ -1,70 +1,193 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import "../styles/pages.css";
 
 function Cart() {
-  const { cart, dispatch } = useContext(CartContext);
 
-  const totalPrice = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0,
-  );
+const { cart, dispatch } = useContext(CartContext);
 
-  return (
-    <div>
-      <h1>Shopping Cart</h1>
+const totalPrice = cart.reduce(
+(total, item) => total + item.price * item.quantity,
+0
+);
 
-      {cart.length === 0 ? (
-        <h3>Your cart is empty</h3>
-      ) : (
-        cart.map((item) => (
-          <div key={item.id}>
-            <img src={item.image} alt={item.title} width="150" />
 
-            <h3>{item.title}</h3>
+return (
 
-            <p>Price: ₹{item.price}</p>
+<div className="cart-page">
 
-            <p>Quantity: {item.quantity}</p>
+    <h1 className="cart-heading">
+        Shopping Cart
+    </h1>
 
-            <button
-              onClick={() =>
+
+    {
+    cart.length === 0 ? (
+
+        <div className="empty-cart">
+            <h2>Your cart is empty</h2>
+            <p>Add some products to continue shopping</p>
+        </div>
+
+
+    ) : (
+
+
+    <div className="cart-container">
+
+
+        <div className="cart-products">
+
+
+        {
+        cart.map((item)=>(
+
+
+        <div className="cart-product-card" key={item.id}>
+
+
+           <img
+  src={item.image || item.thumbnail}
+  alt={item.title}
+/>
+
+
+            <div className="cart-product-info">
+
+
+                <h2>
+                    {item.title}
+                </h2>
+
+
+                <p className="cart-price">
+                    ₹{item.price}
+                </p>
+
+
+
+                <div className="quantity-box">
+
+
+                    <button
+                    onClick={()=>
+                    dispatch({
+                        type:"DECREASE_QUANTITY",
+                        payload:item.id
+                    })
+                    }
+                    >
+                    -
+                    </button>
+
+
+
+                    <span>
+                        {item.quantity}
+                    </span>
+
+
+
+                    <button
+                    onClick={()=>
+                    dispatch({
+                        type:"INCREASE_QUANTITY",
+                        payload:item.id
+                    })
+                    }
+                    >
+                    +
+                    </button>
+
+
+                </div>
+
+
+
+                <button
+                className="remove-btn"
+
+                onClick={()=>
                 dispatch({
-                  type: "DECREASE_QUANTITY",
-                  payload: item.id,
+                    type:"REMOVE_FROM_CART",
+                    payload:item.id
                 })
-              }
-            >
-              -
-            </button>
+                }
 
-            <button
-              onClick={() =>
-                dispatch({
-                  type: "INCREASE_QUANTITY",
-                  payload: item.id,
-                })
-              }
-            >
-              +
-            </button>
+                >
+                    Remove
+                </button>
 
-            <button
-              onClick={() =>
-                dispatch({
-                  type: "REMOVE_FROM_CART",
-                  payload: item.id,
-                })
-              }
-            >
-              Remove
-            </button>
-          </div>
+
+
+            </div>
+
+
+        </div>
+
+
         ))
-      )}
+        }
 
-      <h2>Total: ₹{totalPrice}</h2>
+
+        </div>
+
+
+
+        <div className="checkout-box">
+
+
+            <h2>
+                Order Summary
+            </h2>
+
+
+            <div className="summary-line">
+                <span>Subtotal</span>
+                <span>₹{totalPrice}</span>
+            </div>
+
+
+            <div className="summary-line">
+                <span>Delivery</span>
+                <span>Free</span>
+            </div>
+
+
+            <hr/>
+
+
+            <div className="total-line">
+
+                <span>Total</span>
+
+                <span>
+                    ₹{totalPrice}
+                </span>
+
+            </div>
+
+
+
+            <button className="checkout-btn">
+                Proceed Checkout
+            </button>
+
+
+        </div>
+
+
     </div>
-  );
+
+
+    )
+    }
+
+
+</div>
+
+)
+
 }
 
 export default Cart;

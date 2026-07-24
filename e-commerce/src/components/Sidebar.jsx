@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 
+
 function Sidebar() {
 
 const navigate = useNavigate();
@@ -7,7 +8,7 @@ const navigate = useNavigate();
 
 function handleLogout(){
 
-localStorage.removeItem("isLoggedIn");
+localStorage.removeItem("isAdmin");
 
 navigate("/");
 
@@ -47,8 +48,9 @@ Logout
 
 </div>
 
-)
+);
 
 }
+
 
 export default Sidebar;
