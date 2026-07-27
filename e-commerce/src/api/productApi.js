@@ -1,93 +1,216 @@
-const BASE_URL = "https://dummyjson.com/products";
+const API_URL = "https://dummyjson.com/products?limit=100";
+
+const STORAGE_KEY = "allProducts";
 
 
 const productApi = {
 
 
-getProducts: async () => {
-
-const res = await fetch(`${BASE_URL}?limit=100`);
-
-if(!res.ok){
-throw new Error("Failed to fetch products");
-}
-
-const data = await res.json();
-
-return data.products;
-
-},
+  // GET PRODUCTS
+  getProducts: async () => {
 
 
+    const saved = localStorage.getItem(STORAGE_KEY);
 
-getProductById: async (id) => {
 
-const res = await fetch(`${BASE_URL}/${id}`);
+    if(saved){
 
-if(!res.ok){
-throw new Error("Failed to fetch product");
-}
+      return JSON.parse(saved);
 
-return res.json();
-
-},
+    }
 
 
 
-addProduct: async(product)=>{
-
-const res = await fetch(`${BASE_URL}/add`,{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify(product)
-
-});
+    const res = await fetch(API_URL);
 
 
-return res.json();
-
-},
+    const data = await res.json();
 
 
 
-deleteProduct: async(id)=>{
+    localStorage.setItem(
 
-const res = await fetch(`${BASE_URL}/${id}`,{
+      STORAGE_KEY,
 
-method:"DELETE"
+      JSON.stringify(data.products)
 
-});
-
-
-return res.json();
-
-},
+    );
 
 
 
-updateProduct: async(product)=>{
-
-const res = await fetch(`${BASE_URL}/${product.id}`,{
-
-method:"PUT",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify(product)
-
-});
+    return data.products;
 
 
-return res.json();
+  },
 
-}
+
+
+
+  // GET SINGLE PRODUCT
+
+  getProductById: async(id)=>{
+
+
+    const products = JSON.parse(
+
+      localStorage.getItem(STORAGE_KEY) || "[]"
+
+    );
+
+
+    return products.find(
+
+      product => product.id === Number(id)
+
+    );
+
+
+  },
+
+
+
+
+
+  // ADD PRODUCT
+
+  addProduct: async(product)=>{
+
+
+    const products = JSON.parse(
+
+      localStorage.getItem(STORAGE_KEY) || "[]"
+
+    );
+
+
+
+    const newProduct = {
+
+
+      id: Date.now(),
+
+      title: product.title,
+
+      price: product.price,
+
+      thumbnail: product.image,
+
+      image: product.image
+
+
+    };
+
+
+
+    products.push(newProduct);
+
+
+
+    localStorage.setItem(
+
+      STORAGE_KEY,
+
+      JSON.stringify(products)
+
+    );
+
+
+
+    return newProduct;
+
+
+  },
+
+
+
+
+
+  // DELETE PRODUCT
+
+  deleteProduct: async(id)=>{
+
+
+    const products = JSON.parse(
+
+      localStorage.getItem(STORAGE_KEY) || "[]"
+
+    );
+
+
+
+    const updatedProducts = products.filter(
+
+      product => product.id !== Number(id)
+
+    );
+
+
+
+    localStorage.setItem(
+
+      STORAGE_KEY,
+
+      JSON.stringify(updatedProducts)
+
+    );
+
+
+
+    return true;
+
+
+  },
+
+
+
+
+
+  // UPDATE PRODUCT
+
+  updateProduct: async(product)=>{
+
+
+    const products = JSON.parse(
+
+      localStorage.getItem(STORAGE_KEY) || "[]"
+
+    );
+
+
+
+    const updated = products.map(item=>
+
+
+      item.id === Number(product.id)
+
+      ?
+
+      product
+
+      :
+
+      item
+
+
+    );
+
+
+
+    localStorage.setItem(
+
+      STORAGE_KEY,
+
+      JSON.stringify(updated)
+
+    );
+
+
+
+    return product;
+
+
+  }
+
 
 
 };
